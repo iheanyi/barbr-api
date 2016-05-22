@@ -1,0 +1,8 @@
+database:
+  image: postgres:9.5.2
+  ports:
+    - '5432:5432'
+redis:
+  image: redis:3.0.7
+  ports:
+    - '6379:6379'
