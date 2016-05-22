@@ -14,6 +14,13 @@ config :barbr, Barbr.Endpoint,
   pubsub: [name: Barbr.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :phoenix, :format_encoders,
+  "json-api": Poison
+
+config :plug, :mimes, %{
+  "application/vnd.api+json" => ["json-api"]
+}
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
@@ -27,3 +34,12 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "Barbr",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: System.get_env("GUARDIAN_SECRET") || "sINpfwJtnlmsQ9vr0b3MemlvMhpmaQDkWdVHRE+2yeI4T5kS7a9ABU69TZSFFwh3",
+  serializer: Barbr.GuardianSerializer

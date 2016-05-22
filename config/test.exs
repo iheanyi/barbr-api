@@ -17,3 +17,15 @@ config :barbr, Barbr.Repo,
   database: "barbr_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+  config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "Barbr",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: "testkey",
+  serializer: Barbr.GuardianSerializer
+
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1

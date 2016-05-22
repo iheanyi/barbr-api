@@ -18,7 +18,7 @@ defmodule Barbr.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Barbr, []},
-     applications: [:phoenix, :cowboy, :logger,
+     applications: [:phoenix, :cowboy, :logger, :comeonin,
                     :phoenix_ecto, :postgrex]]
   end
 
@@ -33,6 +33,9 @@ defmodule Barbr.Mixfile do
     [{:phoenix, "~> 1.0.4"},
      {:phoenix_ecto, "~> 1.1"},
      {:postgrex, ">= 0.0.0"},
+     {:ja_serializer, "~> 0.9.0"},
+     {:guardian, "~> 0.10.0"},
+     {:comeonin, "~> 2.4"},
      {:cowboy, "~> 1.0"}]
   end
 
